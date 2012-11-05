@@ -29,12 +29,20 @@ section > ul li {
 /* Faded out hr */
 hr.soften {
   height: 1px;
-  margin: 70px 0;
   background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
   background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
   background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
   background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
   border: 0;
+}
+
+/* Sponsors */
+
+#sponsors {
+  padding-top: 40px;
+}
+#sponsors ul {
+  margin-top: 10px;
 }
 
 /* Jumbotrons
@@ -129,7 +137,6 @@ hr.soften {
   right: 0;
   bottom: 0;
   left: 0;
-  background: url(../img/bs-docs-masthead-pattern.png) repeat center center;
   opacity: .4;
 }
 
@@ -184,6 +191,56 @@ hr.soften {
   *display: inline;
   *zoom: 1;
 }
+
+/* Subhead (other pages)
+------------------------- */
+.subhead {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.subhead h1 {
+  font-size: 40px;
+}
+.subhead p {
+  margin-bottom: 20px;
+}
+.subhead .navbar {
+  display: none;
+}
+
+/* Marketing section of Overview
+-------------------------------------------------- */
+
+.marketing {
+  text-align: center;
+  color: #5a5a5a;
+}
+.marketing h1 {
+  margin: 30px 0 10px;
+  font-size: 30px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.marketing h2 {
+  font-weight: 200;
+  margin-bottom: 5px;
+}
+.marketing p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.marketing .marketing-byline {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #999;
+}
+.marketing img {
+  display: block;
+  margin: 0 auto 30px;
+}
+
 
 /* Footer
 -------------------------------------------------- */
