@@ -103,7 +103,75 @@
           When your application is approved you should receive an email with account details for the Hadoop service at SARA. You have also
           been added to your own private repository, and have received details on this as well. You can use this information
           within a Virtual Machine image we have prepared for you. Carefully read the below documentation on how to get started.
-          <h2>TODO: documentation</h2>
+
+
+<h3>Setting up the virtual machine environment</h3>
+
+<h4>Prerequisites</h4>
+
+<p>The image is an OVA (Open Virtualization Archive) file which should work in at
+least <a href="https://www.virtualbox.org/">VirtualBox</a> and VMWare. It was tested under VirtualBox on Linux and
+Windows. Because of this we advise you to use VirtualBox.</p>
+
+<h4>Download</h4>
+
+<p>The VM image can be downloaded from the <a href="http://ftp.sara.nl/pub/hadoop/">SARA FTP server</a>. The image is 2.7
+GB in size. </p>
+
+<h4>Run</h4>
+
+<p>Once you have downloaded the image you can import it into VirtualBox by
+selecting "File -&lang; Import Appliance". The dialogs should be straight
+forward. Depending on your own machine you may want to tweak some of the VM
+settings such as total memory and the number of processors.</p>
+
+<h3>Running the Common Crawl examples</h3>
+
+<p>The system comes with Eclipse and a modified version of the <a href="https://github.com/norvigaward/commoncrawl-examples">common crawl
+examples</a>. When you launch Eclipse for the first time it will show the
+project README with instructions on running the examples.</p>
+
+<h3>Developing your own Hadoop application</h3>
+
+<h3>Using the Alley Hadoop cluster</h3>
+
+<h4>Restrictions</h4>
+
+<p><strong>Note the restrictions when submitting the cluster:</strong></p>
+
+<ul>
+<li>You cannot run more than one job simultaneously.</li>
+<li>You can only do a total of <strong>two</strong> runs on the full dataset.</li>
+<li>You may do an unlimited number of runs on the small dataset (just not
+simultaneously).</li>
+</ul>
+
+<h4>Authentication</h4>
+
+<p>Before you can access the cluster you need to authenticate yourself with</p>
+
+<pre><code>$ kinit LOGIN</code></pre>
+
+<p>where LOGIN is the login name we have send you by e-mail. The alias
+<code>hadoop-alley</code> functions like the <code>hadoop</code> command, but uses the cluster
+configuration.</p>
+
+<h4>Job submission</h4>
+
+<p>To submit a job to the cluster you use</p>
+
+<pre><code>$ hadoop-alley jar JARFILE MAINCLASS ARGUMENTS</code></pre>
+
+<p>(The <code>hadoop-alley</code> command is an alias for the plain <code>hadoop</code> command that
+sets the configuration directory for the cluster).</p>
+
+<h4>Job/cluster monitoring</h4>
+
+<p>Both the <a href="http://namenode.alley.sara.nl">namenode</a> and <a href="http://jobtracker.alley.sara.nl">jobtracker</a> have a web interface. The Firefox
+browser in the VM image already contains bookmarks to these pages. You also
+need to authenticate with <code>kinit</code> to get access to the web interfaces.</p>
+
+
         </section>
 
       </div>
