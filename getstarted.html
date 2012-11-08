@@ -100,76 +100,113 @@
           <div class="page-header">
             <h1>Getting started</h1>
           </div>
+
+          <p>
           When your application is approved you should receive an email with account details for the Hadoop service at SARA. You have also
           been added to your own private Github repository, and have received details on this as well. You can use this information
-          within a Virtual Machine image we have prepared for you. Carefully read the below documentation on how to get started.
+          within a virtual machine image we have prepared for you. Carefully read the below documentation on how to get started.
+          </p>
 
+          <h2>Setting up the virtual machine environment</h2>
 
-<h3>Setting up the virtual machine environment</h3>
+          <h3>Prerequisites</h3>
 
-<h4>Prerequisites</h4>
+	  <p>The image is an OVA (<a href="http://en.wikipedia.org/wiki/Open_Virtualization_Format">Open Virtualization Archive</a>) file
+	  which should work in at least <a href="https://www.virtualbox.org/">VirtualBox</a> and VMWare. It was tested under VirtualBox on Linux and
+	  Windows hosts. Because of this we advise you to use VirtualBox.</p>
 
-<p>The image is an OVA (Open Virtualization Archive) file which should work in at
-least <a href="https://www.virtualbox.org/">VirtualBox</a> and VMWare. It was tested under VirtualBox on Linux and
-Windows. Because of this we advise you to use VirtualBox.</p>
+          <h3>Download</h3>
 
-<h4>Download</h4>
+	  <p>The VM image is called "HadoopVM.ova" and can be downloaded from the <a href="http://ftp.sara.nl/pub/hadoop/">SARA FTP server</a>.
+	  The image is 2.7 GB in size.</p>
 
-<p>The VM image can be downloaded from the <a href="http://ftp.sara.nl/pub/hadoop/">SARA FTP server</a>. The image is 2.7
-GB in size. </p>
+          <h3>Run</h3>
 
-<h4>Run</h4>
+          <p>Once you have downloaded the image you can import it into VirtualBox by
+          selecting "File → Import Appliance". The dialogs should be straight
+          forward. Depending on your own machine you may want to tweak some of the VM
+          settings such as total memory and the number of processors.</p>
 
-<p>Once you have downloaded the image you can import it into VirtualBox by
-selecting "File -&lang; Import Appliance". The dialogs should be straight
-forward. Depending on your own machine you may want to tweak some of the VM
-settings such as total memory and the number of processors.</p>
+          <h3>Additional image information</h3>
 
-<h3>Running the Common Crawl examples</h3>
+          <p>On the image we have installed Ubuntu GNU/Linux 12.04. Among
+          other, we installed the following applications:</p>
 
-<p>The system comes with Eclipse and a modified version of the <a href="https://github.com/norvigaward/commoncrawl-examples">common crawl
-examples</a>. When you launch Eclipse for the first time it will show the
-project README with instructions on running the examples.</p>
+	  <ul>
+	    <li>Oracle JDK 1.6</li>
+	    <li><a href="http://hadoop.apache.org">Hadoop 0.20.205</a></li>
+	    <li><a href="http://pig.apache.org">Pig 0.10.0</a></li>
+	    <li><a href="http://www.eclipse.org">Eclipse 3.7.2</a></li>
+	  </ul>
 
-<h3>Developing your own Hadoop application</h3>
+          <p>The user account is called 'participant' and has the password
+          'hadoop'. You need this password for tasks that require
+          administrative rights (such as installing additional software).</p>
 
-<h3>Using the Alley Hadoop cluster</h3>
+          <h2>Running the CommonCrawl examples</h2>
 
-<h4>Restrictions</h4>
+	  <p>The system comes with Eclipse and a modified version of the
+	  <a href="https://github.com/norvigaward/commoncrawl-examples">CommonCrawl examples</a>.
+	  When you launch Eclipse for the first time it will show the
+	  project README.md with instructions on running the examples.</p>
 
-<p><strong>Note the restrictions when submitting the cluster:</strong></p>
+          <h2>Developing your own Hadoop application</h2>
 
-<ul>
-<li>You cannot run more than one job simultaneously.</li>
-<li>You can only do a total of <strong>two</strong> runs on the full dataset.</li>
-<li>You may do an unlimited number of runs on the small dataset (just not
-simultaneously).</li>
-</ul>
+          <p>We recommend that you use the CommonCrawl examples as a starting point for your
+          own Hadoop application. You should also use their helper classes such
+          as the ArcRecordReader.</p>
 
-<h4>Authentication</h4>
+          <p>Here is a list of Hadoop-related resources that can help you:</p>
 
-<p>Before you can access the cluster you need to authenticate yourself with</p>
+          <ul>
+            <li>The <a href="http://hadoop.apache.org/docs/r0.20.205.0/api/index.html">API documentation</a> of Hadoop.</li>
+            <li><a href="http://search-hadoop.com">Search-Hadoop.com</a>, a Hadoop-specific search engine.</li>
+          </ul>
+
+          <p>When you run into problems the <a href="http://groups.google.com/group/common-crawl">CommonCrawl Group</a> or the
+          <a href="http://hadoop.apache.org/mailing_lists.html#User">Hadoop user mailing list</a> might be able to assist you.</p>
+
+          <h2>Using SARA’s Hadoop cluster Alley</h2>
+
+          <h3>Restrictions</h3>
+
+          <p><strong>Note the fair use policy when submitting the cluster:</strong></p>
+
+          <ul>
+            <li>You can only do a total of <strong>two</strong> runs on the full dataset.</li>
+            <li>You may do an unlimited number of runs on the small dataset (just not
+            simultaneously).</li>
+          </ul>
+
+          <p>Because the Hadoop cluster is a multi-tenant system your job might
+          be scheduled for immediate execution. <strong>Do not wait with your
+          final runs until a few days before the deadline!</strong>
+          Even more so since you also need to document your results before the deadline.</p>
+
+          <h3>Authentication</h3>
+
+          <p>Before you can access the cluster you need to authenticate yourself with</p>
 
 <pre><code>$ kinit LOGIN</code></pre>
 
-<p>where LOGIN is the login name we have send you by e-mail. The alias
-<code>hadoop-alley</code> functions like the <code>hadoop</code> command, but uses the cluster
-configuration.</p>
+          <p>where LOGIN is the login name we have send you by email. The alias
+          <code>hadoop-alley</code> functions like the <code>hadoop</code> command, but uses the cluster
+          configuration.</p>
 
-<h4>Job submission</h4>
+          <h3>Job submission</h3>
 
-<p>To submit a job to the cluster you use</p>
+          <p>To submit a job to the cluster you use</p>
 
 <pre><code>$ hadoop-alley jar JARFILE MAINCLASS ARGUMENTS</code></pre>
 
-<p>(The <code>hadoop-alley</code> command is an alias for the plain <code>hadoop</code> command that
-sets the configuration directory for the cluster).</p>
+          <p>(The <code>hadoop-alley</code> command is an alias for the plain <code>hadoop</code> command that
+          sets the configuration directory for the cluster).</p>
 
-<h4>Job/cluster monitoring</h4>
+          <h3>Job/cluster monitoring</h3>
 
-<p>Both the <a href="http://namenode.alley.sara.nl">namenode</a> and <a href="http://jobtracker.alley.sara.nl">jobtracker</a> have a web interface. The Firefox
-browser in the VM image already contains bookmarks to these pages. You also
-need to authenticate with <code>kinit</code> to get access to the web interfaces.</p>
+          <p>Both the <a href="http://namenode.alley.sara.nl">namenode</a> and <a href="http://jobtracker.alley.sara.nl">jobtracker</a> have a web interface. The Firefox
+          browser in the VM image already contains bookmarks to these pages. You also
+          need to authenticate with <code>kinit</code> to get access to the web interfaces.</p>
 
 
         </section>
