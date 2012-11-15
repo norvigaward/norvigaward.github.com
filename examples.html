@@ -97,40 +97,92 @@
     
     <div class="container">
       <div class="span9">
+        <div class="page-header">
+          <h1>Get a feel for Hadoop and for the data</h1>
+        </div>
         
-        <section id="runvm">
-          <div class="page-header">
-            <h1><a href="vm.html">Step 1: Setting up your development environment &gt;&gt;</a></h1>
-          </div>
-          <p>We provide a Virtual Machine that can be downloaded and used from your own laptop or pc.
-          This environment includes all tools you need for hacking on the Common Crawl dataset.</p>
-          <hr class="soften" />
+        <section id="index">
+          <ul class="nav nav-tabs nav-stacked">
+            <li><a href="#mapredexamples">Using MapReduce</a></li>
+            <li><a href="#pigexample">Using Pig</a></li>
+          </ul>
         </section>
-        
-        <section id="examples">
-          <div class="page-header">
-            <h1><a href="examples.html">Step 2: Get a feel for Hadoop and for the data &gt;&gt;</a></h1>
+          
+        <section id="mapredexamples">
+          <h2>Using MapReduce</h2>
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img src="assets/images/eclipse.png" alt="eclipse icon" />
+            </a>
+            <div class="media-body">
+            <h4>Step 1: Starting Eclipse</h4>
+            <p>When your Virtual Machine has started up, look on the left of your screen for the 
+            icon you see here. This is Eclipse, you can open it by clicking on it.</p>
+            
+            <h4>Step 2: Opening the org.commoncrawl.examples.ExampleTextWordCount example</h4>
+            <p>When Eclipse has started, notice the <em>Project Explorer</em> on the left hand side 
+            of Eclipse. In here you see an entry with the title <em>Common Crawl Examples</em>.
+            Expand the project by clicking on the arrow next to it, and do the same for the entry
+            <em>java</em>, and then <em>org.commoncrawl.examples</em>. You should now see a list
+            that includes:</p>
+            <ul>
+              <li>ExampleArcMicroformat.java</li>
+              <li>ExampleMetadataDomainPageCount.java</li>
+              <li>ExampleMetadataStats.java</li>
+              <li>ExampleTextWordCount.java</li>
+              <li>SampleFilter.java</li>
+            </ul>
+            <p>Double click on ExampleTextWordCount.java to open.</p>
+            
+            <h4>Step 3: Run the example</h4>
+            <p>In the menu bar in the top of Eclipse you see an icon with a triangle, looking like
+            a "play" button, with a little downward arrow next to it. Click the downward arrow and 
+            select "1. ExampleTextWordCount". The wordcount job now starts running, and you should
+            see the output appearing on your screen.</p>
+            
+            <h4>Step 4: Explore</h4>
+            <p>This job is described in the class ExampleTextWordCount. Notice the <code>main()</code>
+            method at the bottom of the file. Then find the <code>run()</code> method above that,
+            and start exploring it. See <a href="faq.html#hadoophelp">this entry</a> in our
+            <a href="faq.html">FAQ</a> for a list of resources that might help you in figuring
+            out what this example does.</p>
+            
+            <h4>Step 5: Look at the other examples</h4>
+            <p>Now also have a look at the other examples, and see if you can get them to run.
+            <em>Hint:</em> also look at run -> Run Configurations in Eclipse.</p>
+            </div>
           </div>
-          <p>Here we try to give you a feel for how Hadoop works for processing Common Crawl. We
-          do this using some MapReduce examples, and a Pig example.</p>
-          <hr class="soften" />
         </section>
-        
-        <section id="hacking">
-          <div class="page-header">
-            <h1><a href="hacking.html">Step 3: Start hacking &gt;&gt;</a></h1>
+
+        <section id="pigexample">
+          <h2>Using Pig</h2>
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img src="assets/images/terminal.png" alt="terminal icon" />
+            </a>
+            <div class="media-body">
+            <h4>Step 1: Start a terminal</h4>
+            <p>When your Virtual Machine has started up, look on the left of your screen for the 
+            icon you see here. This is the terminal, you can open it by clicking on it.</p>
+            
+            <h4>Step 2: Compiling the code</h4>
+            <p>Go to the directory that holds the examples code:</p>
+            <pre>participant@hadoop-vm:~$ cd git/commoncrawl-examples</pre>
+            <p>Use ant to compile the code</p>
+            <pre>participant@hadoop-vm:~/git/commoncrawl-examples$ ant</pre>
+
+            <h4>Step 3: Run the example</h4>
+            <p>Start pig in local mode and run the <code>example.pig</code> file:</p>
+            <pre>participant@hadoop-vm:~/git/commoncrawl-examples$ pig -x local example.pig</pre>
+            
+            <h4>Step 4: Explore</h4>
+            <p>Open example.pig for reading, and see if you understand what's happening. 
+            See <a href="faq.html#hadoophelp">this entry</a> in our
+            <a href="faq.html">FAQ</a> for a list of resources that might help you in figuring
+            out what this happens.</p>
+
+            </div>
           </div>
-          <p>Now that you ran a few examples, it's time to start hacking on <em>your</em> ideas!</p>
-          <hr class="soften" />
-        </section>
-        
-        <section id="hacking">
-          <div class="page-header">
-            <h1><a href="finalrun.html">Step 4: Do a final run on all data &gt;&gt;</a></h1>
-          </div>
-          <p>So you did enough testing? Now you want to get down to the real work? Well then,
-          find out here how you can do a run on the complete dataset!</p>
-          <hr class="soften" />
         </section>
 
       </div>

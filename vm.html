@@ -97,40 +97,54 @@
     
     <div class="container">
       <div class="span9">
+      
+        <div class="page-header">
+          <h1>Setting up your development environment</h1>
+        </div>
         
-        <section id="runvm">
-          <div class="page-header">
-            <h1><a href="vm.html">Step 1: Setting up your development environment &gt;&gt;</a></h1>
-          </div>
-          <p>We provide a Virtual Machine that can be downloaded and used from your own laptop or pc.
-          This environment includes all tools you need for hacking on the Common Crawl dataset.</p>
+        <section id="install">  
+          <h2>Step 1: Install VirtualBox</h2>
+          <p>To run the VM you have to download and install VirtualBox.</p>
+          <p>If you're on <strong>OS X, Windows, or Solaris</strong> you can download VirtualBox
+          from it's <a href="http://virtualbox.org">homepage</a>. Run the installer and
+          follow the steps.</p>
+          <p>If you're on <strong>Linux</strong>, chances are VirtualBox can be installed
+          through your package manager. If that doesn't you can download deb's and rpm's
+          from the <a href="http://virtualbox.org">homepage</a>.</p>
           <hr class="soften" />
         </section>
-        
-        <section id="examples">
-          <div class="page-header">
-            <h1><a href="examples.html">Step 2: Get a feel for Hadoop and for the data &gt;&gt;</a></h1>
-          </div>
-          <p>Here we try to give you a feel for how Hadoop works for processing Common Crawl. We
-          do this using some MapReduce examples, and a Pig example.</p>
+
+        <section id="download">
+          <h2>Step 2: Download the VM</h2>
+          <p>The Virtual Machine is an <a href="http://en.wikipedia.org/wiki/Open_Virtualization_Format">
+          Open Virtualization Archive</a>. We have tested it on OS X (Mountain Lion), Windows 7, 
+          and Ubuntu 12.04.</p>
+          <p><strong>Download link available shortly</strong></p>
           <hr class="soften" />
         </section>
-        
-        <section id="hacking">
-          <div class="page-header">
-            <h1><a href="hacking.html">Step 3: Start hacking &gt;&gt;</a></h1>
-          </div>
-          <p>Now that you ran a few examples, it's time to start hacking on <em>your</em> ideas!</p>
+
+        <section id="import">
+          <h2>Step 3: Import the VM</h2>
+          <p>Open VirtualBox and import the VM by selecting "File → Import Appliance". Follow the on-screen
+          instructions.</p>
+          <p>The VM comes with sensible default settings:</p>
+          <ul>
+            <li>1GB of memory</li>
+            <li>2 cores</li>
+            <li>A 16GB virtual hard drive</li>
+          </ul>
+          <p>The settings should be working on most systems, but if you run into trouble this is what 
+          you might want to tweak.</p>
           <hr class="soften" />
         </section>
-        
-        <section id="hacking">
-          <div class="page-header">
-            <h1><a href="finalrun.html">Step 4: Do a final run on all data &gt;&gt;</a></h1>
-          </div>
-          <p>So you did enough testing? Now you want to get down to the real work? Well then,
-          find out here how you can do a run on the complete dataset!</p>
+
+        <section id="run">
+          <h2>Step 4: Run the VM</h2>
+          <p>You can start the VM by clicking the Start arrow in the VirtualBox interface. When 
+          Ubuntu has booted you can <a href="examples.html">start</a> by getting a feel
+          for Hadoop and the Common Crawl data!</p>
           <hr class="soften" />
+
         </section>
 
       </div>
