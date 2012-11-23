@@ -195,13 +195,13 @@
         <section id="pigexamples">
           <h2>What Pig example is included in the Virtual Machine?</h2>
           <p>The examples in the Virtual Machine come with an example pig script as well, to illustrate the
-          use of the Pig Loader. This example does a simple count of HTTP status codes. It looks like this:</p>
+          use of the Pig Loader. This example does a simple count of content types. It looks like this:</p>
           <pre class="pre-scrollable">
 register /home/participant/git/commoncrawl-examples/lib/*.jar; 
 register /home/participant/git/commoncrawl-examples/dist/lib/commoncrawl-examples-1.0.1.jar;
-a = LOAD '/data/1346864466526_10.arc.gz' USING org.commoncrawl.pig.ArcLoader() as (date, length, type, statuscode, ipaddress, url, html, payload);
-words = foreach a generate flatten(statuscode) as codes;
-grpd = group words by codes; 
+a = LOAD '/home/participant/data/1346864466526_10.arc.gz' USING org.commoncrawl.pig.ArcLoader() as (date, length, type, statuscode, ipaddress, url, html);
+words = foreach a generate flatten(type) as types;
+grpd = group words by types; 
 cntd = foreach grpd generate group, COUNT(words); 
 dump cntd;</pre>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
