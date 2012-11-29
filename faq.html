@@ -104,9 +104,10 @@
           
         <section id="index">
           <ul class="nav nav-tabs nav-stacked">
-            <li><a href="#restrictions">What are the restrictions?</a></li>
+            <li><a href="#fairuse">What's the fair-use policy?</a></li>
             <li><a href="#datasets">Where can I find the datasets?</a></li>
-            <li><a href="#notall">Hey! That's not the full Common Crawl set! What's going on?</a></li>
+            <li><a href="#notall">Hey! That's not 6 billion pages! What's going on?</a></li>
+            <li><a href="#datastats">What are the stats on the Common Crawl 2012 set?</a></li>
             <li><a href="#whatsonthevm">What is installed on the Virtual Machine?</a></li>
             <li><a href="#vmcredentials">What are the username and password of the Virtual Machine?</a></li>
             <li><a href="#ccexamples">What MapReduce examples are included in the Virtual Machine?</a></li>
@@ -118,17 +119,27 @@
           </ul>
         </section>
 
-        <section id="restrictions">
-          <h2>What are the restrictions?</h2>
-          <p>Since the SARA Hadoop service is multitenant, you have to keep others in mind
-          and it's our job to make sure everybody gets a turn. Our policy is as follows:</p>
+        <section id="fairuse">
+          <h2>What's the fair-use policy?</h2>
+          <p>At SARA we serve a multitude of users. It is important everybody gets a chance
+          to use the service. We try to keep this process as rule-free as possible because 
+          we believe struct regulation is against the nature of scientific experimentation.</p>
+          <p>The fair-use policy we enforce here is aimed at giving everybody equal chances
+          to use the available capacity. This means we will not allow for monopolization of the
+          Hadoop cluster.</p>
+          <p>In order to make this process as smooth as possible we have the following tips:</p>
           <ul>
-            <li>You test your code locally</li>
-            <li>Once you're done you test your code on the testset on the cluster</li>
-            <li>You get no more than 2 runs on the complete dataset</li>
+            <li>Do not wait with running your experiment until the last moment. We will not move the deadline nor make exceptions!</li>
+            <li>You test your code locally. We have included a testset in the VM.</li>
+            <li>Once you're done, test your code on the testset on the cluster. This is not a much smaller set and your tests will finish much earlier.</li>
+            <li>Try to use not more than around 100 reducers. Reduce slots won't become available before your job ends, so small jobs might have to wait for your big job.</li>
+            <li>Try to limit your runs on the complete dataset - the more often you will do complete runs, the more likely you will start monopolizing.</li>
           </ul>
-          <p>We monitor all usage on the cluster, and if we notice somebody taking an unfair
-          share of the cluster we <em>will</em> disqualify this person.</p>
+          <p>We monitor the cluster continuously. We might contact you if we notice you take an unfair amount of resources. 
+          We might also kil jobs that take an unfair amount of resources. But please try not to let it get
+          to that.</p>
+          <p><strong>We reserve the right to kill your jobs or deny you access at any given time, and at our discretion.</strong> This might be necessary if you do not comply with the fair-use
+          policy, but other circumstances might also justify these actions.</p>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
           <hr class="soften" />
         </section>
@@ -146,10 +157,171 @@
         </section>
 
         <section id="notall">
-          <h2>Hey! That's not the full Common Crawl set! What's going on?</h2>
-          <p>You're right. At SARA we could only manage to get about a third of the set at the moment,
-          due to a lack of capacity. We're currently adding capacity but we don't expect to be able
-          to offer the full set before January 15th 2013.</p>
+          <h2>Hey! That's not 6 billion pages! What's going on?</h2>
+          <p>You're right. Common Crawl exists is divided into three  major subsets:</p>
+          <ul>
+            <li>Crawl data from 2008 / 2010</li>
+            <li>Crawl data from 2009 / 2010</li>
+            <li>Crawl data from 2012</li>
+          </ul>
+          <p>The 2012 set contains 3.8 billion pages in total. At SARA we currently have 
+          about a third of the 2012 set at the moment. We're currently adding capacity for 
+          the remainder of the set but we don't expect to be able to offer the full 2012
+          set before January 15th 2013. See the <a href="#datastats">stats</a> for more
+          detailed info on the Common Crawl 2012 set.</p>
+          <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
+          <hr class="soften" />
+        </section>
+        
+        <section id="datastats">
+          <h2>What are the stats on the Common Crawl 2012 set?</h2>
+          <p>Common Crawls' Chris Stephens mentions some stats in a comment on the
+          <a href="http://commoncrawl.org/2012-crawl-data-now-available/">announcement</a>
+          of the 2012 set. Note that <a href="#notall">we do not have the full 2012 set 
+          available</a>.</p>
+          <table class="table table-bordered">
+            <caption>General stats</caption>
+            <tbody>
+              <tr>
+                <td>Total # of Web Documents</td>
+                <td>3.8 billion</td>
+              </tr>
+              <tr>
+                <td>Total Uncompressed Content Size</td>
+                <td>&gt; 100 TB</td>
+              </tr>
+              <tr>
+                <td># of Domains</td>
+                <td>61 million</td>
+              </tr>
+              <tr>
+                <td># of PDFs</td>
+                <td>92.2 million</td>
+              </tr>
+              <tr>
+                <td># of Word Docs</td>
+                <td>6.6 million</td>
+              </tr>
+              <tr>
+                <td># of Excel Docs</td>
+                <td>1.3 million</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered">
+            <caption>Domain Name Page Count breakdown of Top 20 TLD's (these may contain HTTP 404 
+            results)</caption>
+            <thead>
+              <tr>
+                <th>TLD</th>
+                <th>count</th>
+                <th>relative count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>com</td>
+                <td>2,880,575,573</td>
+                <td>62.88%</td>
+              </tr>
+              <tr>
+                <td>org</td>
+                <td>324,888,772</td>
+                <td>7.09%</td>
+              </tr>
+              <tr>
+                <td>net</td>
+                <td>285,633,100</td>
+                <td>6.24%</td>
+              </tr>
+              <tr>
+                <td>de</td>
+                <td>225,021,051</td>
+                <td>4.91%</td>
+              </tr>
+              <tr>
+                <td>co.uk</td>
+                <td>157,660,729</td>
+                <td>3.44%</td>
+              </tr>
+              <tr>
+                <td>ru</td>
+                <td>78,841,251</td>
+                <td>1.72%</td>
+              </tr>
+              <tr>
+                <td>info</td>
+                <td>76,883,737</td>
+                <td>1.68%</td>
+              </tr>
+              <tr>
+                <td>pl</td>
+                <td>68,825,576</td>
+                <td>1.50%</td>
+              </tr>
+              <tr>
+                <td>nl</td>
+                <td>68,461,904</td>
+                <td>1.49%</td>
+              </tr>
+              <tr>
+                <td>fr</td>
+                <td>62,542,019</td>
+                <td>1.37%</td>
+              </tr>
+              <tr>
+                <td>it</td>
+                <td>59,027,654</td>
+                <td>1.29%</td>
+              </tr>
+              <tr>
+                <td>com.au</td>
+                <td>41,032,777</td>
+                <td>0.90%</td>
+              </tr>
+              <tr>
+                <td>edu</td>
+                <td>36,029,039</td>
+                <td>0.79%</td>
+              </tr>
+              <tr>
+                <td>com.br</td>
+                <td>35,458,446</td>
+                <td>0.77%</td>
+              </tr>
+              <tr>
+                <td>cz</td>
+                <td>34,635,725</td>
+                <td>0.76%</td>
+              </tr>
+              <tr>
+                <td>ca</td>
+                <td>32,767,169</td>
+                <td>0.72%</td>
+              </tr>
+              <tr>
+                <td>es</td>
+                <td>31,994,812</td>
+                <td>0.70%</td>
+              </tr>
+              <tr>
+                <td>jp</td>
+                <td>28,502,740</td>
+                <td>0.62%</td>
+              </tr>
+              <tr>
+                <td>ro</td>
+                <td>26,803,448</td>
+                <td>0.59%</td>
+              </tr>
+              <tr>
+                <td>se</td>
+                <td>25,399,890</td>
+                <td>0.55%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>We have not verified these statistics.</p>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
           <hr class="soften" />
         </section>
