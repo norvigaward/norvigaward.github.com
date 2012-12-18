@@ -98,14 +98,44 @@
     <div class="container">
       <div class="span9">
       
-
+      <section id="finalrun">
         <div class="page-header">
           <h1>Your final run!</h1>
         </div>
 
-        Coming soon
+	<p>Now that you have tested your code and it runs without problems on
+	the test subset it is time to generate your final results by running
+	your application on the cluster on the full dataset.</p> 
+	
+	<h2>Submit job on full set</h2>
+
+	<p>Before submitting jobs that run on the full dataset, make sure you
+	understand the the guidelines of the <a
+	href="faq.html#fairuse">fair-use policiy</a>. Because of its size, this
+	is even more important for the full dataset than it is for the test
+	subset.</p>
+	
+	<p>Submitting a job that runs on the full set is simply
+	a matter of changing the input path of your job. Just change the input
+	path from <code>/data/public/common-crawl/award/testset/</code> to
+	<code>/data/public/common-crawl/parse-output/</code>. See the FAQ entry
+	<a href="faq.html#datasets">"Where can I find the datasets?"</a>.</p>
+
+	<p>Like with the test subset you need to authenticate before
+	submitting. You can do this by opening a terminal and run <code>kinit
+	USERNAME</code>.</p> 
+
+	<h2>Write your report</h2>
+
+	<div class="alert alert-error">
+	<p>After you have finished the above, don't forget to <a
+	href="submittingresults.html">submit your results</a> before the
+	deadline!</p>
+	</div>
 
       </div>
+
+      </section>
       
       <div class="span2" id="sponsors">
         <ul class="thumbnails">

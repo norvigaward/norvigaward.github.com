@@ -102,41 +102,46 @@
           <h1>Start hacking on your own ideas!</h1>
         </div>
         
-    <p>To start experimenting you need to know the <em>location</em> and
+	<p>To start experimenting you need to know the <em>location</em> and
 	the <em>format</em> of the dataset. Here we provide pointers and give
 	the information you need to run your Hadoop programs on the VM and
 	cluster.<p>
 	
-	    <h2>Fair use policy</h2>
-    <p>First of all: make sure you are familiar with the <a href="faq.html#fairuse">fair-use policy</a>.</p>
+	<h2>Fair use policy</h2>
+
+	<p>First of all: make sure you are familiar with the <a
+	href="faq.html#fairuse">fair-use policy</a>.</p>
 
         <h2>The datasets</h2>
 
-	<p>We have created 2 subsets of the Common Crawl set hosted at SARA:
-	a minimal set on the VM image itself and a small set on the
-	Hadoop cluster. <a href="faq.html#datasets">Location and
-	size</a> of the test sets.</p>
+	<p>We have created 2 subsets of the Common Crawl set hosted at SARA: a
+	minimal set on the VM image itself and a small set on the Hadoop
+	cluster. <a href="faq.html#datasets">Location and size</a> of the test
+	sets.</p>
 
 	<p>The dataset contains 3 different type of files: ARC files, text
 	files and metadata. You can find <a
 	href="https://commoncrawl.atlassian.net/wiki/display/CRWL/About+the+Data+Set#AbouttheDataSet-FileTypes">a
-	description of the three file formats</a> on the Common Crawl wiki.</a></p>
+	description of the three file formats</a> on the Common Crawl
+	wiki.</a></p>
 
         <h2>Using the Hadoop cluster</h2>
 
-	<p>Before you start submitting jobs to the cluster, read the
-        <a href="faq.html#fairuse">fair-use policy</a>!</p>
+	<p>Before you start submitting jobs to the cluster, read the <a
+	href="faq.html#fairuse">fair-use policy</a>!</p>
 
 	<p>Once your program runs correctly on your local machine it is time to
-	move to a bigger dataset and a bigger machine: SARA's Hadoop cluster (we call her Alley).
-	There are just a few things that you to pay attention to:</p>
+	move to a bigger dataset and a bigger machine: SARA's Hadoop cluster
+	(we call her Alley).  There are just a few things that you to pay
+	attention to:</p>
 
 	<ul>
 	<li>Change the input path to the <strong>testset</strong> on the
 	cluster (see above).</li>
 	<li>Authenticate before submitting your job. You can do this by opening
 	a terminal and run <code>kinit USERNAME</code>. This is the username
-	you have received by email after applying. You only need to do this once per session.</li>
+	you have received by email after applying. You only need to do this
+	once per session.</li>
 	</ul>
 
 	<h3>Submitting a MapReduce job</h3>
@@ -144,12 +149,13 @@
 	<p>We already prepared a run configuration for the ExampleTextWordCount
 	example that uses the cluster, aptly named "ExampleTextWordcount -
 	cluster". You can run this from the green play button with toolbox. You
-	can view and edit the configuration from the mene by selecting "Run →
+	can view and edit the configuration from the menu by selecting "Run →
 	External Tools → External Tools Configurations".</p>
 
 	<h3>Submitting a pig job</h3>
 
-	<p>You can run a pig job on the cluster by removing the '-x local' from the command line:
+	<p>You can run a pig job on the cluster by removing the '-x local' from
+	the command line:
 <pre><code>$ kinit USERNAME
 Password for USERNAME@ALLEY.SARA.NL:
 $ pig myjob.pig</code></pre>
