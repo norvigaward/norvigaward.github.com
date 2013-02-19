@@ -217,10 +217,11 @@ hr.soften {
 }
 .marketing h1 {
   margin: 30px 0 10px;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 200;
   line-height: 1;
   letter-spacing: -1px;
+  margin-bottom: 30px;
 }
 .marketing h2 {
   font-weight: 200;
@@ -241,6 +242,9 @@ hr.soften {
   margin: 0 auto 30px;
 }
 
+.marketing hr.soften {
+  margin: 70px 0;
+}
 
 /* Footer
 -------------------------------------------------- */
