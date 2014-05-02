@@ -51,10 +51,10 @@
               <li class="">
                 <a href="learnmore.html">Learn more</a>
               </li>
-              <li class="active">
+              <li class="">
                 <a href="apply.html">Apply</a>
               </li>
-              <li class="">
+              <li class="active">
                 <a href="gettingstarted.html">Getting started</a>
               </li>
               <li class="">
@@ -76,31 +76,58 @@
       </div>
     </div>
 
-  <div class="container">
+      <div class="container">
       <div class="span9">
 
+        <div class="page-header">
+          <h1>Setting up your development environment</h1>
+        </div>
 
-        <section id="applyhow">
-          <div class="page-header">
-            <h1>How can you apply?</h1>
-          </div>
-          <p>You can apply if you are a resident of Belgium, the Netherlands or Luxembourg. You need to study or be employed at an university, hogeschool or research institute to be eligible for the prizes.</p>
+        <section id="install">
+          <h2>Step 1: Install VirtualBox</h2>
+          <p>To run the VM you have to download and install VirtualBox.</p>
+          <p>If you're on <strong>OS X, Windows, or Solaris</strong> you can download VirtualBox
+          from it's <a href="http://virtualbox.org">homepage</a>. Run the installer and
+          follow the steps.</p>
+          <p>If you're on <strong>Linux</strong>, chances are VirtualBox can be installed
+          through your package manager. If that doesn't you can download deb's and rpm's
+          from the <a href="http://virtualbox.org">homepage</a>.</p>
+          <hr class="soften" />
+        </section>
 
-          <div class="alert alert-info"><strong>Important note</strong>: We allow a limited amount of applicants, so we can guarantee availability of the data and computing resources.
-          We also reserve the right to deny access to all applicants at any stage in the process.</div>
+        <section id="download">
+          <h2>Step 2: Download the VM</h2>
+          <p>The Virtual Machine is an <a href="http://en.wikipedia.org/wiki/Open_Virtualization_Format">
+          Open Virtualization Archive</a>. We have tested it on OS X (Mountain Lion), Windows 7,
+          and Ubuntu 12.04.</p>
+	        <p><a href="http://beehub.nl/surfsara-hadoop/public/awardvm.ova">The VM
+          image</a> (1.6GB) can be downloaded from the SURFsara Beehub server.</p>
 
-          <p>Send an email (using your institute email address) to <a href="mailto:hadoop.support@surfsara.nl" title="Norvig Award Application">hadoop.support@surfsara.nl</a>, and
-          include the following information:</p>
+          <hr class="soften" />
+        </section>
+
+        <section id="import">
+          <h2>Step 3: Import the VM</h2>
+          <p>Open VirtualBox and import the VM by selecting "File → Import Appliance". Follow the on-screen
+          instructions.</p>
+          <p>The VM comes with sensible default settings:</p>
           <ul>
-            <li>Your full name</li>
-            <li>Your affiliation (institute, department, group)</li>
-            <li>Your position</li>
-            <li>Your telephone number</li>
-            <li>Your Github account name (see why at <a href="submitresults.html">Submit Results</a>)</li>
+            <li>1GB of memory</li>
+            <li>1 CPU-core</li>
+            <li>A 16GB virtual hard drive</li>
           </ul>
-          <p><strong>If you apply with more than one person, you need to send these details for each member of your team. Teams can have a maximum of three members.</strong></p>
+          <p>The settings should be working on most systems, but if you run into trouble this is what
+          you might want to tweak.</p>
+          <hr class="soften" />
+        </section>
 
-          <p>If your application is approved we will send you instructions on how to proceed. If your application is denied for whatever reason, we will let you know as well.</p>
+        <section id="run">
+          <h2>Step 4: Run the VM</h2>
+          <p>You can start the VM by clicking the Start arrow in the VirtualBox interface. When
+          Ubuntu has booted you can <a href="examples.html">start</a> by getting a feel
+          for Hadoop and the Common Crawl data!</p>
+          <hr class="soften" />
+
         </section>
 
       </div>

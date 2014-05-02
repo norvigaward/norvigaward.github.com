@@ -51,10 +51,10 @@
               <li class="">
                 <a href="learnmore.html">Learn more</a>
               </li>
-              <li class="active">
+              <li class="">
                 <a href="apply.html">Apply</a>
               </li>
-              <li class="">
+              <li class="active">
                 <a href="gettingstarted.html">Getting started</a>
               </li>
               <li class="">
@@ -76,32 +76,66 @@
       </div>
     </div>
 
-  <div class="container">
+    <div class="container">
       <div class="span9">
 
+        <div class="page-header">
+          <h1>Start hacking on your own ideas!</h1>
+        </div>
 
-        <section id="applyhow">
-          <div class="page-header">
-            <h1>How can you apply?</h1>
-          </div>
-          <p>You can apply if you are a resident of Belgium, the Netherlands or Luxembourg. You need to study or be employed at an university, hogeschool or research institute to be eligible for the prizes.</p>
+	<p>To start experimenting you need to know the <em>location</em> and
+	the <em>format</em> of the dataset. Here we provide pointers and give
+	the information you need to run your Hadoop programs on the VM and
+	cluster.<p>
 
-          <div class="alert alert-info"><strong>Important note</strong>: We allow a limited amount of applicants, so we can guarantee availability of the data and computing resources.
-          We also reserve the right to deny access to all applicants at any stage in the process.</div>
+	<h2>Fair use policy</h2>
 
-          <p>Send an email (using your institute email address) to <a href="mailto:hadoop.support@surfsara.nl" title="Norvig Award Application">hadoop.support@surfsara.nl</a>, and
-          include the following information:</p>
-          <ul>
-            <li>Your full name</li>
-            <li>Your affiliation (institute, department, group)</li>
-            <li>Your position</li>
-            <li>Your telephone number</li>
-            <li>Your Github account name (see why at <a href="submitresults.html">Submit Results</a>)</li>
-          </ul>
-          <p><strong>If you apply with more than one person, you need to send these details for each member of your team. Teams can have a maximum of three members.</strong></p>
+	<p>First of all: make sure you are familiar with the <a
+	href="faq.html#fairuse">fair-use policy</a>.</p>
 
-          <p>If your application is approved we will send you instructions on how to proceed. If your application is denied for whatever reason, we will let you know as well.</p>
-        </section>
+        <h2>The datasets</h2>
+
+	<p>We have created 2 subsets of the Common Crawl set hosted at SURFsara: a
+	minimal set on the VM image itself and a small set on the Hadoop
+	cluster. <a href="faq.html#datasets">Location and size</a> of the test
+	sets.</p>
+
+	<p>The dataset contains 3 different type of files: WARC, WET and WAT files. You can find <a
+	href="http://commoncrawl.org/navigating-the-warc-file-format/">a
+	description of the three file formats</a> on the Common Crawl
+	blog.</a></p>
+
+        <h2>Using the Hadoop cluster</h2>
+
+	<p>Once your program runs correctly on your local machine it is time to
+	move to a bigger dataset and a bigger machine: SURFsara's Hadoop cluster
+	(called Hathi).  There are just a few things that you to pay
+	attention to:</p>
+
+	<ul>
+	<li>Change the input path to the <strong>testset</strong> on the
+	cluster (see above).</li>
+	<li>Authenticate before submitting your job. You can do this by opening
+	a terminal and run <code>kinit USERNAME</code>. This is the username
+	you have received by email after applying. You only need to do this
+	once per session.</li>
+	</ul>
+
+	<h3>Submitting a MapReduce job</h3>
+
+	<p>We already prepared a run configuration for the ExampleTextWordCount
+	example that uses the cluster, aptly named "ExampleTextWordcount -
+	cluster". You can run this from the green play button with toolbox. You
+	can view and edit the configuration from the menu by selecting "Run →
+	External Tools → External Tools Configurations".</p>
+
+	<h3>Submitting a pig job</h3>
+
+	<p>You can run a pig job on the cluster by removing the '-x local' from
+	the command line:
+<pre><code>$ kinit USERNAME
+Password for USERNAME@CUA.SURFSARA.NL:
+$ pig myjob.pig</code></pre>
 
       </div>
 
