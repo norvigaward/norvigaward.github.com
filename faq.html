@@ -90,8 +90,8 @@
             <li><a href="#datastats">What are the stats on the Common Crawl 2012 set?</a></li>
             <li><a href="#whatsonthevm">What is installed on the Virtual Machine?</a></li>
             <li><a href="#vmcredentials">What are the username and password of the Virtual Machine?</a></li>
-            <li><a href="#ccexamples">What MapReduce examples are included in the Virtual Machine?</a></li>
-            <li><a href="#pigexamples">What Pig example is included in the Virtual Machine?</a></li>
+            <!--li><a href="#ccexamples">What MapReduce examples are included in the Virtual Machine?</a></li-->
+            <!--li><a href="#pigexamples">What Pig example is included in the Virtual Machine?</a></li-->
             <li><a href="#hadoophelp">Where can I get help with Hadoop?</a></li>
             <li><a href="#cchelp">Where can I get help with the Common Crawl data?</a></li>
             <li><a href="#saraqueue">Why does it take so long before my job starts running at SURFsara?</a></li>
@@ -129,7 +129,7 @@
           <p>Next to the Common Crawl set we provide a test sets. The two sets can be found at:</p>
           <ul>
             <li>Testset on the cluster: /data/public/common-crawl/award/testset (80 GB)</li>
-            <li>Full set: /data/public/common-crawl/crawl-data/CC-MAIN-2014-10/* (48.6 TB)</li>
+            <li>Full set: /data/public/common-crawl/crawl-data/CC-MAIN-2014-10/ (48.6 TB)</li>
           </ul>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
           <hr class="soften" />
@@ -170,7 +170,7 @@
           <hr class="soften" />
         </section>
 
-        <section id="ccexamples">
+        <!--section id="ccexamples">
           <h2>What MapReduce examples are included in the Virtual Machine?</h2>
           <p>The Virtual Machine comes with Eclipse and a modified version of the <a
           href="https://github.com/norvigaward/commoncrawl-examples">Common
@@ -199,7 +199,7 @@ cntd = foreach grpd generate group, COUNT(words);
 dump cntd;</pre>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
           <hr class="soften" />
-        </section>
+        </section-->
 
         <section id="hadoophelp">
           <h2>Where can I get help with Hadoop?</h2>
@@ -208,7 +208,7 @@ dump cntd;</pre>
             <li><a href="http://search-hadoop.com">Search-Hadoop.com</a>, a Hadoop-specific search engine.</li>
             <li><strong>Tip</strong> Become a member of the <a href="http://hadoop.apache.org/mailing_lists.html#User">hadoop-user mailing list</a></li>
             <li><strong>Tip</strong> Become a member of the <a href="http://pig.apache.org/mailing_lists.html#Users">pig-users mailing list</a></li>
-            <li>Read the <a href="http://pig.apache.org/docs/r0.10.0/">Pig manual</a></li>
+            <li>Read the <a href="http://pig.apache.org/docs/r0.12.0/">Pig manual</a></li>
             <li>Use Jimmy Lin and Chris Dyer's excellent book, <a href="http://www.umiacs.umd.edu/~jimmylin/book.html">Data-Intensive Text Processing with MapReduce</a></li>
             <!--<li>The <a href="http://hadoop.apache.org/docs/r2.4.0/mapred_tutorial.html">MapReduce tutorial</a> from Hadoop's homepage</li>-->
           </ul>

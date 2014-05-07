@@ -51,10 +51,10 @@
               <li class="">
                 <a href="learnmore.html">Learn more</a>
               </li>
-              <li class="active">
+              <li class="">
                 <a href="apply.html">Apply</a>
               </li>
-              <li class="">
+              <li class="active">
                 <a href="gettingstarted.html">Getting started</a>
               </li>
               <li class="">
@@ -69,63 +69,71 @@
       </div>
     </div>
 
-    <div class="jumbotron masthead">
-      <div class="container">
-        <h1>Norvig Web Data Science Award</h1>
-  <p>show what you can do with 3 billion web pages<small><br/>by <a href="http://www.surfsara.nl"><img alt="SURFsara" src="assets/images/sara.logo.png"></a> and <a href="http://www.commoncrawl.org"><img src="assets/images/commoncrawl-small.png" alt="CommonCrawl"></a></small></p>
-      </div>
+<div class="jumbotron subhead">
+
+<div class="container">
+  <div class="span9">
+
+  <section id="finalrun">
+    <div class="page-header">
+      <h1>Your final run!</h1>
     </div>
 
-  <div class="container">
-      <div class="span9">
+<p>Now that you have tested your code and it runs without problems on
+the test subset it is time to generate your final results by running
+your application on the cluster on the full dataset.</p>
 
+<h2>Submit job on full set</h2>
 
-        <section id="applyhow">
-          <div class="page-header">
-            <h1>How can you apply?</h1>
-          </div>
-          <p>You can apply if you are a resident of Belgium, the Netherlands or Luxembourg. You need to study or be employed at an university, hogeschool or research institute to be eligible for the prizes.</p>
+<p>Before submitting jobs that run on the full dataset, make sure you
+understand the the guidelines of the <a
+href="faq.html#fairuse">fair-use policiy</a>. Because of its size, this
+is even more important for the full dataset than it is for the test
+subset.</p>
 
-          <div class="alert alert-info"><strong>Important note</strong>: We allow a limited amount of applicants, so we can guarantee availability of the data and computing resources.
-          We also reserve the right to deny access to all applicants at any stage in the process.</div>
+<p>Submitting a job that runs on the full set is simply
+a matter of changing the input path of your job. Just change the input
+path from <code>/data/public/common-crawl/award/testset</code> to
+<code>/data/public/common-crawl/crawl-data/CC-MAIN-2014-10/</code>. See the FAQ entry
+<a href="faq.html#datasets">"Where can I find the datasets?"</a>.</p>
 
-          <p>Send an email (using your institute email address) to <a href="mailto:hadoop.support@surfsara.nl" title="Norvig Award Application">hadoop.support@surfsara.nl</a>, and
-          include the following information:</p>
-          <ul>
-            <li>Your full name</li>
-            <li>Your affiliation (institute, department, group)</li>
-            <li>Your position</li>
-            <li>Your telephone number</li>
-            <li>Your Github account name (see why at <a href="submittingresults.html">Submit Results</a>)</li>
-          </ul>
-          <p><strong>If you apply with more than one person, you need to send these details for each member of your team. Teams can have a maximum of three members.</strong></p>
+<p>Like with the test subset you need to authenticate before
+submitting. You can do this by opening a terminal and run <code>kinit
+USERNAME</code>.</p>
 
-          <p>If your application is approved we will send you instructions on how to proceed. If your application is denied for whatever reason, we will let you know as well.</p>
-        </section>
+<h2>Write your report</h2>
 
-      </div>
+<div class="alert alert-error">
+<p>After you have finished the above, don't forget to <a
+href="submittingresults.html">submit your results</a> before the
+deadline!</p>
+</div>
 
-      <div class="span2" id="sponsors">
-        <ul class="thumbnails">
-          <li>
-            <a href="http://www.surfsara.nl" class="thumbnail">
-              <img src="assets/images/sara.logo.png" alt="SURFsara">
-            </a>
-          </li>
-          <li>
-            <a href="http://www.commoncrawl.org" class="thumbnail">
-              <img src="assets/images/cc.logo.png" alt="Common Crawl">
-            </a>
-          </li>
-          <li>
-            <a href="http://www.github.com" class="thumbnail">
-              <img src="assets/images/github.logo.png" alt="Github">
-            </a>
-          </li>
-        </ul>
-      </div>
+  </div>
 
-    </div>
+  </section>
+
+  <div class="span2" id="sponsors">
+    <ul class="thumbnails">
+      <li>
+        <a href="http://www.surfsara.nl" class="thumbnail">
+          <img src="assets/images/sara.logo.png" alt="SURFsara">
+        </a>
+      </li>
+      <li>
+        <a href="http://www.commoncrawl.org" class="thumbnail">
+          <img src="assets/images/cc.logo.png" alt="Common Crawl">
+        </a>
+      </li>
+      <li>
+        <a href="http://www.github.com" class="thumbnail">
+          <img src="assets/images/github.logo.png" alt="Github">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</div>
 
     <!-- Footer
     ================================================== -->
