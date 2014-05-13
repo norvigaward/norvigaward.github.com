@@ -84,60 +84,102 @@
 
         <section id="index">
           <ul class="nav nav-tabs nav-stacked">
-            <li><a href="#mapredexamples">Using MapReduce</a></li>
-            <li><a href="#pigexample">Using Pig</a></li>
-            <li><a href="#codeupdate">General good practice: make sure your example code is up to date</a></li>
+            <li><a href="#data">About the data</a></li>
+            <li><a href="#mapredexamples">Some examples</a></li>
+            <!-- li><a href="#pigexample">Using Pig</a></li -->
+            <li><a href="#codeupdate">General good practice: make sure your client, utilities and example code are up to date</a></li>
           </ul>
         </section>
 
+<section id="data">
+  <h2>About the data</h2>
+  <div class="media">
+    <a class="pull-left" href="#">
+      <img src="assets/images/commoncrawl-small.png" alt="cc logo" />
+    </a>
+    <div class="media-body">
+    <h4>Warc files and sequence files</h4>
+    <p>The March 2014 release of the Common Crawl is delivered in the form of warc files and are stored per segment (557 in total).
+    Each segment contains gzipped warc files which contain the raw crawl output. That is: it contains warc records with metadata, the http request and the http response.
+    The wet and wat files (also gzipped) contain the parsed html (text/plain) and metadata in a JSON format respectively. More information can be found <a href="">here</a> and the file format specification can be found <a href="">here</a></p>
+    <p>In addition to the warc, wet and wat files we decided to convert the warc.gz (raw crawl files) to a sequence file format. Each warc file is around 600 to 800MB in size and
+    the gzipped files can only be process by one mapper. I.e. they are not splittable. To optimize this and allow random access (if needed) to the warc files we converted them to
+    Hadoop sequence files. The keys of the sequence files is a long (LongWritable) which runs from 0 to the number of warc records per segment. The values are a String (Text) where
+    each String parses to a single warc record. The choice for a String representation was made to allow flexibility in the use of the different Java warc libraries (although we highly recommend
+    the <a href="">Java Web Archive Toolkit</a>). For dealing with the files on our cluster we have prepared some utility classes (mainly hadoop inputformats and recordreaders) which can be found here: <a href="">warcutils</a>
+    </p>
+
+    <h4>Common Crawl on our cluster</h4>
+    <p>By now you will probably be wondering where the files are located and how to get to them. The entire March 2014 crawl is located on hdfs on the
+    Hathi cluster at SURFsara:
+     <ul>
+     <li>/data/public/common-crawl/crawl-data/CC-MAIN-2014-10</li>
+   </ul>
+    The directory structure mirrors that of the Common Crawl data on Amazon S3. There are subdirectories
+    per segment and each segment has subdirectories per file type: warc, wat, wet and seq (for our converted sequence files).</p>
+    <p>
+      In addition to the full data set there is a subset of the data - one segment - in the following location:
+      <ul>
+       <li>/data/public/common-crawl/crawl-data/CC-TEST-2014-10</li>
+     </ul>
+      Please use this data for debugging and testing purposes. Doing a run on the full dataset will use up significant cluster resources and should only be done for final results.
+    </p>
+
+    </div>
+  </div>
+</section>
+
         <section id="mapredexamples">
-          <h2>Using MapReduce</h2>
+          <h2>Some examples</h2>
           <div class="media">
             <a class="pull-left" href="#">
-              <img src="assets/images/eclipse.png" alt="eclipse icon" />
+              <img src="assets/images/terminal.png" alt="terminal icon" />
             </a>
             <div class="media-body">
-            <h4>Step 1: Starting Eclipse</h4>
-            <p>When your Virtual Machine has started up, look on the left of your screen for the
-            icon you see here. This is Eclipse, you can open it by clicking on it.</p>
+            <h4>Step 1: Getting the example code</h4>
+            <p>We have prepared some example code to show how to work with each of the files in the Common Crawl data. This should give
+            you a good starting point for your own hacking. The code can be found on our github: <a href="">warcexamples source</a>. A precompiled
+            binary including dependencies is on beehub: <a href="">warcexamples binaries</a>. To clone the source:
+            <pre>git clone https://github.com/norvigaward/warcexamples</pre> The warcexamples project contains both Ant/Ivy and Maven build files and
+          should by easy to use with your favourite editor/ide. If you have any questions on building or compiling the source please let us know.</p>
 
-            <h4>Step 2: Opening the org.commoncrawl.examples.ExampleTextWordCount example</h4>
-            <p>When Eclipse has started, notice the <em>Project Explorer</em> on the left hand side
-            of Eclipse. In here you see an entry with the title <em>Common Crawl Examples</em>.
-            Expand the project by clicking on the arrow next to it, and do the same for the entry
-            <em>java</em>, and then <em>org.commoncrawl.examples</em>. You should now see a list
-            that includes:</p>
+            <h4>Step 2: Running the mapreduce examples</h4>
+            <p>In order to run the examples you should have the Hadoop client software prepared and a valid Kerberos ticket (for details see the documentation <a href="">here</a>).
+            One you have done this you can run the examples with the yarn jar command:
+            <pre>yarn jar warcexamples.jar</pre>
+            </p>
+            <p>
+              Running the above command should show you a list of the current example programs:
             <ul>
-              <li>ExampleArcMicroformat.java</li>
-              <li>ExampleMetadataDomainPageCount.java</li>
-              <li>ExampleMetadataStats.java</li>
-              <li>ExampleTextWordCount.java</li>
-              <li>SampleFilter.java</li>
+              <li><p>NER: mapreduce example that performs Named Entity Recognition on text in wet files. See the <a href=""><code>nl.surfsara.warcexamples.hadoop.wet</code></a> package for relevant code.
+              Usage:</p>
+            <pre>yarn jar warcexamples.jar ner hdfs_input_path hdfs_output_path</pre></li>
+              <li><p>servertype: extracts the servertype information from the wat files. See the <a href=""><code>nl.surfsara.warcexamples.hadoop.wat</code></a> package for relevant code. Usage:</p>
+              <pre>yarn jar warcexamples.jar servertype hdfs_input_path hdfs_output_path</pre></li></li>
+              <li><p>href: parses the html in warc files and outputs the url of the crawled page and the links (href attribute) from the parsed document. See the <a href=""><code>nl.surfsara.warcexamples.hadoop.warc</code></a> package for relevant code. Usage: </p>
+                <pre>yarn jar warcexamples.jar href hdfs_input_path hdfs_output_path</pre>
+              <p>Note that the input path should consist of sequence files.</p></li></li>
+            </li>
+              <li><p>headers: dumps the headers from a wat, warc or wet file (gzipped ones). This is not a mapreduce example but files are read from HDFS. This can be run from your local computer or the VM. See the <a href=""><code>nl.surfsara.warcexamples.hadoop.hdfs</code></a> package for relevant code. Usage:</p>
+              <pre>yarn jar warcexamples.jar headers hdfs_input_files</pre> </li>
             </ul>
-            <p>Double click on ExampleTextWordCount.java to open.</p>
+          </p>
+            <p></p>
 
-            <h4>Step 3: Run the example</h4>
-            <p>In the menu bar in the top of Eclipse you see an icon with a triangle, looking like
-            a "play" button, with a little downward arrow next to it. Click the downward arrow and
-            select "1. ExampleTextWordCount - local". The wordcount job now starts running, and you should
-            see the output appearing on your screen.</p>
+        <h4>Step 3: Explore the code</h4>
+        <p>Most of the examples follow the same structure: an implementation of the <code>org.apache.hadoop.util.Tool</code> interface coupled to a custom mapper with identity or stock reducer. The dependencies
+          are handled by Ivy/Maven and bundled with the binary package. All the mapreduce examples make use of our own <a href="">warcutils</a> package for reading data from hdfs.
 
-            <h4>Step 4: Explore</h4>
-            <p>This job is described in the class ExampleTextWordCount. Notice the <code>main()</code>
-            method at the bottom of the file. Then find the <code>run()</code> method above that,
-            and start exploring it. See <a href="faq.html#hadoophelp">this entry</a> in our
-            <a href="faq.html">FAQ</a> for a list of resources that might help you in figuring
-            out what this example does.</p>
 
-            <h4>Step 5: Look at the other examples</h4>
-            <p>Now also have a look at the other examples, and see if you can get them to run.
-            <em>Hint:</em> also look at "Run → Run Configurations" in Eclipse.</p>
+            <h4>Step 4: Running some pig examples</h4>
+            <p>Coming soon.</p>
+
             </div>
           </div>
         </section>
 
-        <section id="pigexample">
-          <h2>Using Pig</h2>
+        <!-- section id="pigexample">
+          <h2>An e Pig</h2>
           <div class="media">
             <a class="pull-left" href="#">
               <img src="assets/images/terminal.png" alt="terminal icon" />
@@ -165,27 +207,25 @@
 
             </div>
           </div>
-        </section>
+        </section -->
 
         <section id="codeupdate">
-          <h2>Good practice: update the code before you start</h2>
+          <h2>General good practice: make sure your code is up to date</h2>
           <div class="media">
             <a class="pull-left" href="#">
               <img src="assets/images/terminal.png" alt="terminal icon" />
             </a>
             <div class="media-body">
-              <p>Whenever bugs are found in our example code we fix them and push them to our
-              code repository. This however means that you might have a version that includes bugs.
+              <p>Whenever bugs are found in our example code, the utilities or the hadoop client code we fix them and push them to our
+              code repository on github. This however means that you might have a version that includes bugs.
               To make sure you always have the latest code, we recommend you perform a regular
               update.</p>
               <h4>Step 1: Start a terminal</h4>
-              <p>When your Virtual Machine has started up, look on the left of your screen for the
-              icon you see here. This is the terminal, you can open it by clicking on it.</p>
               <h4>Step 2: Perform the update</h4>
-              <p>Go to the directory that holds the examples code:</p>
-              <pre>naward@hadoop-vm:~$ cd git/commoncrawl-examples</pre>
+              <p>Go to the directory that holds the code (in this case the examples, the process is the same for the other projects):</p>
+              <pre>naward@hadoop-vm:~$ cd git/warcexamples</pre>
               <p>Use git to fetch the latest code</p>
-              <pre>naward@hadoop-vm:~/git/commoncrawl-examples$ git pull</pre>
+              <pre>naward@hadoop-vm:~/git/warcexamples$ git pull</pre>
             </div>
           </div>
         </section>
