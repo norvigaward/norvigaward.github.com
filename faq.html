@@ -87,7 +87,7 @@
           <ul class="nav nav-tabs nav-stacked">
             <li><a href="#fairuse">What's the fair-use policy?</a></li>
             <li><a href="#datasets">Where can I find the datasets?</a></li>
-            <li><a href="#datastats">What are the stats on the Common Crawl 2012 set?</a></li>
+            <!--li><a href="#datastats">What are the stats on the Common Crawl 2014 set?</a></li-->
             <li><a href="#whatsonthevm">What is installed on the Virtual Machine?</a></li>
             <li><a href="#vmcredentials">What are the username and password of the Virtual Machine?</a></li>
             <!--li><a href="#ccexamples">What MapReduce examples are included in the Virtual Machine?</a></li-->
@@ -103,20 +103,19 @@
           <h2>What's the fair-use policy?</h2>
           <p>At SURFsara we serve a multitude of users. It is important everybody gets a chance
           to use the service. We try to keep this process as rule-free as possible because
-          we believe struct regulation is against the nature of scientific experimentation.</p>
+          we believe strict regulation is against the nature of scientific experimentation.</p>
           <p>The fair-use policy we enforce here is aimed at giving everybody equal chances
           to use the available capacity. This means we will not allow for monopolization of the
           Hadoop cluster.</p>
           <p>In order to make this process as smooth as possible we have the following tips:</p>
           <ul>
             <li>Do not wait with running your experiment until the last moment. We will not move the deadline nor make exceptions!</li>
-            <li>You test your code locally. We have included a testset in the VM.</li>
-            <li>Once you're done, test your code on the testset on the cluster. This is not a much smaller set and your tests will finish much earlier.</li>
-            <li>Try to use not more than around 100 reducers. Reduce slots won't become available before your job ends, so small jobs might have to wait for your big job.</li>
+            <li>Test your code on the test set on the cluster. This is a much smaller set and your tests will finish much earlier.</li>
+            <li>Try to use not more than around 50 reducers. Reduce slots won't become available before your job ends, so small jobs might have to wait for your big job.</li>
             <li>Try to limit your runs on the complete dataset - the more often you will do complete runs, the more likely you will start monopolizing.</li>
           </ul>
           <p>We monitor the cluster continuously. We might contact you if we notice you take an unfair amount of resources.
-          We might also kil jobs that take an unfair amount of resources. But please try not to let it get
+          We might also kill jobs that take an unfair amount of resources. But please try not to let it get
           to that.</p>
           <p><strong>We reserve the right to kill your jobs or deny you access at any given time, and at our discretion.</strong> This might be necessary if you do not comply with the fair-use
           policy, but other circumstances might also justify these actions.</p>
@@ -126,17 +125,17 @@
 
         <section id="datasets">
           <h2>Where can I find the datasets?</h2>
-          <p>Next to the Common Crawl set we provide a test sets. The two sets can be found at:</p>
+          <p>Next to the Common Crawl set we provide a test set. The two sets can be found at:</p>
           <ul>
-            <li>Testset on the cluster: /data/public/common-crawl/award/testset (80 GB)</li>
-            <li>Full set: /data/public/common-crawl/crawl-data/CC-MAIN-2014-10/ (48.6 TB)</li>
+	    <li>Test set on the cluster: /data/public/common-crawl/crawl-data/CC-<strong>TEST</strong>-2014-10/ (80 GB)</li>
+	    <li>Full set: /data/public/common-crawl/CC-<strong>MAIN</strong>-2014-10/ (48.6 TB)</li>
           </ul>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
           <hr class="soften" />
         </section>
 
         <!--<section id="datastats">
-          <h2>What are the stats on the Common Crawl 2012 set?</h2>
+          <h2>What are the stats on the Common Crawl 2014 set?</h2>
           <p>Common Crawls' Chris Stephens mentions some stats in a comment on the
           <a href="http://commoncrawl.org/2012-crawl-data-now-available/">announcement</a>
           of the 2012 set. Note that <a href="#notall">we do not have the full 2012 set
@@ -153,7 +152,7 @@
           other, we installed the following applications:</p>
           <ul>
             <li>OpenJDK 7 (7u55)</li>
-            <li><a href="http://hadoop.apache.org">Hadoop 2.4.</a></li>
+            <li><a href="http://hadoop.apache.org">Hadoop 2.4</a></li>
             <li><a href="http://pig.apache.org">Pig 0.12.1</a></li>
             <li><a href="http://www.eclipse.org">Eclipse 3.8.1</a></li>
           </ul>
@@ -228,7 +227,7 @@ dump cntd;</pre>
 
         <section id="saraqueue">
           <h2>Why does it take so long before my job starts running at SURFsara?</h2>
-          <p>The SURFsara Hadoop cluster is a multitenant cluster. This means you are sharing the cluster's resources
+          <p>The SURFsara Hadoop cluster is a multi-tenant cluster. This means you are sharing the cluster's resources
           with other users. If at other jobs are occupying all processing power of the cluster, your job will have
           to wait in queue until there is space again.</p>
           <p class="pull-right"><small><a href="#index">Back to FAQ index</a></small></p>
