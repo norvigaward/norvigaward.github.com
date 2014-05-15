@@ -96,24 +96,23 @@
         <h2>The datasets</h2>
 
 	<p>We have created 2 subsets of the Common Crawl set hosted at SURFsara: a
-	minimal set on the VM image itself and a small set on the Hadoop
+	single file available for download for on the VM, and a single segment on the Hadoop
 	cluster. <a href="faq.html#datasets">Location and size</a> of the test
 	sets.</p>
 
-	<p>The dataset contains 3 different type of files: WARC, WET and WAT files. You can find <a
-	href="http://commoncrawl.org/navigating-the-warc-file-format/">a
-	description of the three file formats</a> on the Common Crawl
-	blog.</a></p>
+	<p>The dataset contains four different type of files: SEQ, WARC, WET and WAT files. You can find <a
+	href="examples.html#data">a
+	description of the file formats</a> on the examples page.</a></p>
 
         <h2>Using the Hadoop cluster</h2>
 
 	<p>Once your program runs correctly on your local machine it is time to
 	move to a bigger dataset and a bigger machine: SURFsara's Hadoop cluster
-	(called Hathi).  There are just a few things that you to pay
+	(called Hathi).  There are just a few things that you need to pay
 	attention to:</p>
 
 	<ul>
-	<li>Change the input path to the <strong>testset</strong> on the
+	<li>Change the input path to the <strong>TEST</strong> set on the
 	cluster (see above).</li>
 	<li>Authenticate before submitting your job. You can do this by opening
 	a terminal and run <code>kinit USERNAME</code>. This is the username
@@ -123,12 +122,8 @@
 
 	<h3>Submitting a MapReduce job</h3>
 
-	<p>We already prepared a run configuration for the ExampleTextWordCount
-	example that uses the cluster, aptly named "ExampleTextWordcount -
-	cluster". You can run this from the green play button with toolbox. You
-	can view and edit the configuration from the menu by selecting "Run →
-	External Tools → External Tools Configurations".</p>
-
+  <p>As for the examples we showed before, you should build a jar from your source and run it with <code>yarn jar</code>.
+	
 	<h3>Submitting a pig job</h3>
 
 	<p>You can run a pig job on the cluster by removing the '-x local' from

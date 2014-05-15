@@ -101,7 +101,9 @@
     <h4>Warc files and sequence files</h4>
     <p>The March 2014 release of the Common Crawl is delivered in the form of warc files and are stored per segment (557 segments in total).
     Each segment contains gzipped warc files (100 files per segment) which contain the raw crawl output. That is: it contains warc records with metadata, the http request and the http response.
-    The wet and wat files (also gzipped) contain the parsed html (text/plain) and metadata in a JSON format, respectively. More information can be found <a href="http://commoncrawl.org/navigating-the-warc-file-format/">here</a> and the file format specification can be found <a href="http://bibnum.bnf.fr/WARC/">here</a>. Note that warc, wat and wet are all considered warc files per the specification and consist of records where a warc header is followed by some optional content - they differ in the type of content. </p>
+    The wet and wat files (also gzipped) contain the parsed html (text/plain) and metadata in a JSON format, respectively. More information can be found <a href="http://commoncrawl.org/navigating-the-warc-file-format/">here</a> and the file format specification can be found <a href="http://bibnum.bnf.fr/WARC/">here</a>. Note that warc, wat and wet are all considered warc files per the specification and consist of records where a warc header is followed by some optional content - they differ in the type of content.</p>
+
+    <p>Another final thing to note is that each crawled page is often represented by consecutive records with different WARC-Types: metadata, request, response, warcinfo, conversion etc. We suggest you study the files carefully (they are all text files), a tarball with an example of each files is available here: <a href="http://beehub.nl/surfsara-hadoop/public/CC-TEST-2014-10-segment-1394678706211.tar.gz">CC-TEST-2014-10-segment-1394678706211.tar.gz</a> (943MB).</p>
     <p>In addition to the warc, wet and wat files we decided to convert the warc.gz (raw crawl files) to a sequence file format. Each warc file is around 600 to 800MB in size and
     the gzipped files can only be process by one mapper. I.e. they are not splittable. To optimise this and allow random access (if needed) to the warc files we converted them to
     Hadoop sequence files. The keys of the sequence file are longs (LongWritable) which run from 0 to the number of warc records per segment. The values are a String (Text) where
@@ -144,7 +146,7 @@
 
             <h4>Step 2: Running the mapreduce examples</h4>
             <p>In order to run the examples you should have the Hadoop client software prepared and a valid Kerberos ticket (for details see the documentation <a href="https://surfsara.nl/systems/hadoop/hathi">here</a> and <a href="https://github.com/sara-nl/hathi-client">here</a>).
-            One you have done this you can run the examples with the yarn jar command:
+            Once you have done this you can run the examples with the yarn jar command:
             <pre>yarn jar warcexamples.jar</pre></p>
             <p>Or depending on how you built the examples:
             <pre>yarn jar warcexamples-1.1-fatjar.jar</pre>
@@ -166,14 +168,21 @@
             </ul>
           </p>
             <p>If you want to specify hadoop specific options to the programs you can add these to the command line. For example the following command runs the href example with 10 reducers and max 4GB memory for the JVM:
-              <pre>yarn jar warcexamples.jar href -D mapreduce.job.reduces=10 -D mapred.child.java.opts=-Xmx4G hdfs_input_path hdfs_output_path</p>
+              <pre>yarn jar warcexamples.jar href -D mapreduce.job.reduces=10 \
+         -D mapred.child.java.opts=-Xmx4G hdfs_input_path hdfs_output_path</pre></p>
 
         <h4>Step 3: Explore the code</h4>
         <p>Most of the examples follow the same structure: an implementation of the <code>org.apache.hadoop.util.Tool</code> interface coupled to a custom mapper with identity or stock reducer. The dependencies
           are handled by Ivy/Maven. All the mapreduce examples make use of our own <a href="https://github.com/norvigaward/warcutils">warcutils</a> package for reading data from HDFS (maven repository <a href="http://beehub.nl/surfsara-repo/releases/SURFsara/warcutils">here</a>).
 
             <h4>Step 4: Running some pig examples</h4>
-            <p>Coming soon.</p>
+
+            <p>Apache Pig allows you to write data-analysis programs in a data-flow language called Pig Latin. The pig compiler will convert your Pig Latin program to a series of MapReduce jobs. Using Pig allows you to think about your problem in a series of relations instead of MapReduce. We provide Pig Loaders for the warc and seq files as part of the warcutils package. The Pig Loaders do not expose all the information that is available in the warc files, but your are free to extend them to extract the information relevant for your project.</p>
+
+            <p>The <a href="https://github.com/norvigaward/warcexamples">warcexamples repository</a> contains two Pig examples scripts that demonstrate how you can process the web crawl using Pig. One of them looks at the Content-Type and Content-Length of the records and calculates the average length per type. Running a pig job is very simple: <pre><code>$ cd ~/warcexamples/pig
+$ pig sizepertype.pig</code></pre></p>
+
+            <p>With Pig it is also possible to run the job on the local machine by adding <code>-x local</code> to the command. Running pig locally on a single segment is a very fast way to explore the data and develop your algorithm. You do need to make sure that you have the data and dependencies (jars) available on your local machine.</p>
 
             </div>
           </div>
