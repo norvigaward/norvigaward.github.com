@@ -99,18 +99,18 @@
     </a>
     <div class="media-body">
     <h4>Warc files and sequence files</h4>
-    <p>The March 2014 release of the Common Crawl is delivered in the form of warc files and are stored per segment (557 in total).
-    Each segment contains gzipped warc files which contain the raw crawl output. That is: it contains warc records with metadata, the http request and the http response.
-    The wet and wat files (also gzipped) contain the parsed html (text/plain) and metadata in a JSON format respectively. More information can be found <a href="http://commoncrawl.org/navigating-the-warc-file-format/">here</a> and the file format specification can be found <a href="http://bibnum.bnf.fr/WARC/">here</a></p>
+    <p>The March 2014 release of the Common Crawl is delivered in the form of warc files and are stored per segment (557 segments in total).
+    Each segment contains gzipped warc files (100 files per segment) which contain the raw crawl output. That is: it contains warc records with metadata, the http request and the http response.
+    The wet and wat files (also gzipped) contain the parsed html (text/plain) and metadata in a JSON format, respectively. More information can be found <a href="http://commoncrawl.org/navigating-the-warc-file-format/">here</a> and the file format specification can be found <a href="http://bibnum.bnf.fr/WARC/">here</a>. Note that warc, wat and wet are all considered warc files per the specification and consist of records where a warc header is followed by some optional content - they differ in the type of content. </p>
     <p>In addition to the warc, wet and wat files we decided to convert the warc.gz (raw crawl files) to a sequence file format. Each warc file is around 600 to 800MB in size and
-    the gzipped files can only be process by one mapper. I.e. they are not splittable. To optimize this and allow random access (if needed) to the warc files we converted them to
-    Hadoop sequence files. The keys of the sequence files is a long (LongWritable) which runs from 0 to the number of warc records per segment. The values are a String (Text) where
+    the gzipped files can only be process by one mapper. I.e. they are not splittable. To optimise this and allow random access (if needed) to the warc files we converted them to
+    Hadoop sequence files. The keys of the sequence file are longs (LongWritable) which run from 0 to the number of warc records per segment. The values are a String (Text) where
     each String parses to a single warc record. The choice for a String representation was made to allow flexibility in the use of the different Java warc libraries (although we highly recommend
     the <a href="https://sbforge.org/display/JWAT/JWAT">Java Web Archive Toolkit</a>). For dealing with the files on our cluster we have prepared some utility classes (mainly hadoop inputformats and recordreaders) which can be found here: <a href="https://github.com/norvigaward/warcutils">warcutils</a>
     </p>
 
     <h4>Common Crawl on our cluster</h4>
-    <p>By now you will probably be wondering where the files are located and how to get to them. The entire March 2014 crawl is located on hdfs on the
+    <p>By now you will probably be wondering where the files are located and how to get to them. The entire March 2014 crawl is located on HDFS on the
     Hathi cluster at SURFsara:
      <ul>
      <li>/data/public/common-crawl/crawl-data/CC-MAIN-2014-10</li>
@@ -138,15 +138,16 @@
             <div class="media-body">
             <h4>Step 1: Getting the example code</h4>
             <p>We have prepared some example code to show how to work with each of the files in the Common Crawl data. This should give
-            you a good starting point for your own hacking. The code can be found on our github: <a href="https://github.com/norvigaward/warcexamples">warcexamples source</a>. A precompiled
-            binary including dependencies is on beehub: <a href="">warcexamples binaries</a>. To clone the source:
+            you a good starting point for your own hacking. The code can be found on our github: <a href="https://github.com/norvigaward/warcexamples">warcexamples source</a>. Precompiled binaries are available from our maven repository: <a href="http://beehub.nl/surfsara-repo/releases/">http://beehub.nl/surfsara-repo/releases/</a>. To clone the source:
             <pre>git clone https://github.com/norvigaward/warcexamples</pre> The warcexamples project contains both Ant/Ivy and Maven build files and
           should by easy to use with your favourite editor/ide. If you have any questions on building or compiling the source please let us know by sending an email to: <a href="mailto:hadoop.support@surfsara.nl?subject=Norvig Award: examples">hadoop.support@surfsara.nl</a>.</p>
 
             <h4>Step 2: Running the mapreduce examples</h4>
             <p>In order to run the examples you should have the Hadoop client software prepared and a valid Kerberos ticket (for details see the documentation <a href="https://surfsara.nl/systems/hadoop/hathi">here</a> and <a href="https://github.com/sara-nl/hathi-client">here</a>).
             One you have done this you can run the examples with the yarn jar command:
-            <pre>yarn jar warcexamples.jar</pre>
+            <pre>yarn jar warcexamples.jar</pre></p>
+            <p>Or depending on how you built the examples:
+            <pre>yarn jar warcexamples-1.1-fatjar.jar</pre>
             </p>
             <p>
               Running the above command should show you a list of the current example programs:
@@ -164,11 +165,12 @@
               <pre>yarn jar warcexamples.jar headers hdfs_input_file</pre> </li>
             </ul>
           </p>
-            <p></p>
+            <p>If you want to specify hadoop specific options to the programs you can add these to the command line. For example the following command runs the href example with 10 reducers and max 4GB memory for the JVM:
+              <pre>yarn jar warcexamples.jar href -D mapreduce.job.reduces=10 -D mapred.child.java.opts=-Xmx4G hdfs_input_path hdfs_output_path</p>
 
         <h4>Step 3: Explore the code</h4>
         <p>Most of the examples follow the same structure: an implementation of the <code>org.apache.hadoop.util.Tool</code> interface coupled to a custom mapper with identity or stock reducer. The dependencies
-          are handled by Ivy/Maven and bundled with the binary package. All the mapreduce examples make use of our own <a href="https://github.com/norvigaward/warcutils">warcutils</a> package for reading data from hdfs.
+          are handled by Ivy/Maven. All the mapreduce examples make use of our own <a href="https://github.com/norvigaward/warcutils">warcutils</a> package for reading data from HDFS (maven repository <a href="http://beehub.nl/surfsara-repo/releases/SURFsara/warcutils">here</a>).
 
             <h4>Step 4: Running some pig examples</h4>
             <p>Coming soon.</p>
@@ -216,9 +218,9 @@
             </a>
             <div class="media-body">
               <p>Whenever bugs are found in our example code, the utilities or the hadoop client code we fix them and push them to our
-              code repository on github. This however means that you might have a version that includes bugs.
+              code repository on github: <a href="https://github.com/norvigaward/">https://github.com/norvigaward/</a> and to our maven repository on beehub: <a href="http://beehub.nl/surfsara-repo/releases/">http://beehub.nl/surfsara-repo/releases/</a>. This however means that you might have a version that includes bugs.
               To make sure you always have the latest code, we recommend you perform a regular
-              update.</p>
+              update and/or instruct your own packages to depend on the most up-to-date version. To retrieve the latest example code from github:</p>
               <h4>Step 1: Start a terminal</h4>
               <h4>Step 2: Perform the update</h4>
               <p>Go to the directory that holds the code (in this case the examples, the process is the same for the other projects):</p>
